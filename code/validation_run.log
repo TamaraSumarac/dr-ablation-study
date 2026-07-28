@@ -1,0 +1,681 @@
+Loading user config located at: '/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260723_190659.log
+2026-07-23T19:06:59Z [135ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-07-23T19:06:59Z [619ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-07-23T19:07:00Z [937ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-07-23T19:07:00Z [957ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-07-23T19:07:06Z [7,165ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:07:06Z [7,166ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:07:06Z [7,166ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:07:06Z [7,278ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/ubuntu/IsaacLab/apps/isaaclab.python.headless.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-07-23_19-07-09.log[0m
+[36m======================================================================================[0m
+
+[33m19:07:09 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : None
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m19:07:09 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+[INFO]: Time taken for scene creation : 0.779279 seconds
+[INFO]: Scene manager:  <class InteractiveScene>
+	Number of environments: 30
+	Environment spacing   : 2.5
+	Source prim name      : /World/envs/env_0
+	Global prim paths     : ['/World/ground']
+	Replicate physics     : True
+[INFO]: Starting the simulation. This may take a few seconds. Please wait...
+[INFO]: Time taken for simulation start : 0.965911 seconds
+[INFO] Command Manager:  <CommandManager> contains 1 active terms.
++------------------------------------------------+
+|              Active Command Terms              |
++-------+---------------+------------------------+
+| Index | Name          |          Type          |
++-------+---------------+------------------------+
+|   0   | base_velocity | UniformVelocityCommand |
++-------+---------------+------------------------+
+
+[INFO] Event Manager:  <EventManager> contains 2 active terms.
++--------------------------------------+
+| Active Event Terms in Mode: 'startup' |
++----------+---------------------------+
+|  Index   | Name                      |
++----------+---------------------------+
+|    0     | physics_material          |
++----------+---------------------------+
++-------------------------------------+
+| Active Event Terms in Mode: 'reset' |
++---------+---------------------------+
+|  Index  | Name                      |
++---------+---------------------------+
+|    0    | reset_base                |
+|    1    | reset_robot_joints        |
++---------+---------------------------+
+
+[INFO] Recorder Manager:  <RecorderManager> contains 0 active terms.
++---------------------+
+| Active Recorder Terms |
++-----------+---------+
+|   Index   | Name    |
++-----------+---------+
++-----------+---------+
+
+[INFO] Action Manager:  <ActionManager> contains 1 active terms.
++------------------------------------+
+|  Active Action Terms (shape: 12)   |
++--------+-------------+-------------+
+| Index  | Name        |   Dimension |
++--------+-------------+-------------+
+|   0    | joint_pos   |          12 |
++--------+-------------+-------------+
+
+[INFO] Observation Manager: <ObservationManager> contains 1 groups.
++---------------------------------------------------------+
+| Active Observation Terms in Group: 'policy' (shape: (48,)) |
++-----------+---------------------------------+-----------+
+|   Index   | Name                            |   Shape   |
++-----------+---------------------------------+-----------+
+|     0     | base_lin_vel                    |    (3,)   |
+|     1     | base_ang_vel                    |    (3,)   |
+|     2     | projected_gravity               |    (3,)   |
+|     3     | velocity_commands               |    (3,)   |
+|     4     | joint_pos                       |   (12,)   |
+|     5     | joint_vel                       |   (12,)   |
+|     6     | actions                         |   (12,)   |
++-----------+---------------------------------+-----------+
+
+[INFO] Termination Manager:  <TerminationManager> contains 2 active terms.
++---------------------------------+
+|     Active Termination Terms    |
++-------+--------------+----------+
+| Index | Name         | Time Out |
++-------+--------------+----------+
+|   0   | time_out     |   True   |
+|   1   | base_contact |  False   |
++-------+--------------+----------+
+
+[INFO] Reward Manager:  <RewardManager> contains 10 active terms.
++-----------------------------------------+
+|           Active Reward Terms           |
++-------+----------------------+----------+
+| Index | Name                 |   Weight |
++-------+----------------------+----------+
+|   0   | track_lin_vel_xy_exp |      1.5 |
+|   1   | track_ang_vel_z_exp  |     0.75 |
+|   2   | lin_vel_z_l2         |     -2.0 |
+|   3   | ang_vel_xy_l2        |    -0.05 |
+|   4   | dof_torques_l2       |  -0.0002 |
+|   5   | dof_acc_l2           | -2.5e-07 |
+|   6   | action_rate_l2       |    -0.01 |
+|   7   | feet_air_time        |     0.25 |
+|   8   | flat_orientation_l2  |     -2.5 |
+|   9   | dof_pos_limits       |      0.0 |
++-------+----------------------+----------+
+
+[INFO] Curriculum Manager:  <CurriculumManager> contains 0 active terms.
++----------------------+
+| Active Curriculum Terms |
++-----------+----------+
+|   Index   | Name     |
++-----------+----------+
++-----------+----------+
+
+[INFO]: Completed setting up the environment...
+--------------------------------------------------------------------------------
+Resolved observation sets: 
+	 actor :  ['policy']
+	 critic :  ['policy']
+--------------------------------------------------------------------------------
+Actor Model: MLPModel(
+  (obs_normalizer): Identity()
+  (distribution): GaussianDistribution()
+  (mlp): MLP(
+    (0): Linear(in_features=48, out_features=128, bias=True)
+    (1): ELU(alpha=1.0)
+    (2): Linear(in_features=128, out_features=128, bias=True)
+    (3): ELU(alpha=1.0)
+    (4): Linear(in_features=128, out_features=128, bias=True)
+    (5): ELU(alpha=1.0)
+    (6): Linear(in_features=128, out_features=12, bias=True)
+  )
+)
+Critic Model: MLPModel(
+  (obs_normalizer): Identity()
+  (mlp): MLP(
+    (0): Linear(in_features=48, out_features=128, bias=True)
+    (1): ELU(alpha=1.0)
+    (2): Linear(in_features=128, out_features=128, bias=True)
+    (3): ELU(alpha=1.0)
+    (4): Linear(in_features=128, out_features=128, bias=True)
+    (5): ELU(alpha=1.0)
+    (6): Linear(in_features=128, out_features=1, bias=True)
+  )
+)
+[week2_stock_baseline |        nominal/none    ] return=   41.35  fall_rate=0.00  stuck=0
+[33m19:07:36 [manager_based_env.py] WARNING: Seed not set for the environment. The environment creation may not be deterministic.[0m
+Loading user config located at: '/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260723_192229.log
+2026-07-23T19:22:29Z [184ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-07-23T19:22:30Z [709ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-07-23T19:22:30Z [1,047ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-07-23T19:22:30Z [1,065ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-07-23T19:22:36Z [7,093ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:22:36Z [7,093ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:22:36Z [7,093ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:22:36Z [7,201ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/ubuntu/IsaacLab/apps/isaaclab.python.headless.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-07-23_19-22-39.log[0m
+[36m======================================================================================[0m
+
+[33m19:22:39 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : None
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m19:22:39 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+2026-07-23T19:22:36Z [7,201ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:22:36Z [7,201ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+2026-07-23T19:22:39Z [9,617ms] [Warning] [isaaclab.envs.manager_based_env] Seed not set for the environment. The environment creation may not be deterministic.
+2026-07-23T19:22:40Z [11,483ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.iray.libs-0.0.0+69cbf6ad.lx64.r/bin/iray/nvcuvid_video_decoder.so: libnvcuvid.so.1: cannot open shared object file: No such file or directory
+2026-07-23T19:22:40Z [11,483ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading .\nt-x86-64\lib\nvcuvid_video_decoder.so: .\nt-x86-64\lib\nvcuvid_video_decoder.so: cannot open shared object file: No such file or directory
+2026-07-23T19:22:40Z [11,483ms] [Warning] [rtx.neuraylib.plugin] Failed to load nvcuvid h264 decoder plugin. Iray Bridge h264 support will not be available.
+2026-07-23T19:22:41Z [11,987ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_current.
+2026-07-23T19:22:41Z [11,987ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_goal.
+2026-07-23T19:23:05Z [36,199ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Calling createGpuFoundation without first releasing already acquired instances with releaseGpuFoundation!
+2026-07-23T19:23:05Z [36,242ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:23:05Z [36,242ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:23:05Z [36,242ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:23:05Z [36,374ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+2026-07-23T19:23:05Z [36,374ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:23:05Z [36,374ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+Loading user config located at: '/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260723_192306.log
+2026-07-23T19:23:06Z [143ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-07-23T19:23:06Z [638ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-07-23T19:23:07Z [968ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-07-23T19:23:07Z [986ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-07-23T19:23:13Z [7,173ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:23:13Z [7,173ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:23:13Z [7,173ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:23:13Z [7,276ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/ubuntu/IsaacLab/apps/isaaclab.python.headless.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-07-23_19-23-15.log[0m
+[36m======================================================================================[0m
+
+[33m19:23:15 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : None
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m19:23:15 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+2026-07-23T19:23:13Z [7,276ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:23:13Z [7,276ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+2026-07-23T19:23:15Z [9,138ms] [Warning] [isaaclab.envs.manager_based_env] Seed not set for the environment. The environment creation may not be deterministic.
+2026-07-23T19:23:17Z [10,733ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.iray.libs-0.0.0+69cbf6ad.lx64.r/bin/iray/nvcuvid_video_decoder.so: libnvcuvid.so.1: cannot open shared object file: No such file or directory
+2026-07-23T19:23:17Z [10,733ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading .\nt-x86-64\lib\nvcuvid_video_decoder.so: .\nt-x86-64\lib\nvcuvid_video_decoder.so: cannot open shared object file: No such file or directory
+2026-07-23T19:23:17Z [10,733ms] [Warning] [rtx.neuraylib.plugin] Failed to load nvcuvid h264 decoder plugin. Iray Bridge h264 support will not be available.
+2026-07-23T19:23:17Z [11,166ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_goal.
+2026-07-23T19:23:17Z [11,166ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_current.
+2026-07-23T19:23:39Z [33,582ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Calling createGpuFoundation without first releasing already acquired instances with releaseGpuFoundation!
+2026-07-23T19:23:39Z [33,631ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:23:39Z [33,631ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:23:39Z [33,631ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:23:40Z [33,766ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+2026-07-23T19:23:40Z [33,766ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:23:40Z [33,766ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+Loading user config located at: '/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260723_192340.log
+2026-07-23T19:23:40Z [157ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-07-23T19:23:41Z [589ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-07-23T19:23:41Z [898ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-07-23T19:23:41Z [912ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-07-23T19:23:46Z [6,008ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:23:46Z [6,008ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:23:46Z [6,008ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:23:46Z [6,106ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/ubuntu/IsaacLab/apps/isaaclab.python.headless.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-07-23_19-23-49.log[0m
+[36m======================================================================================[0m
+
+[33m19:23:49 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : None
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m19:23:49 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+2026-07-23T19:23:46Z [6,106ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:23:46Z [6,106ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+2026-07-23T19:23:49Z [8,547ms] [Warning] [isaaclab.envs.manager_based_env] Seed not set for the environment. The environment creation may not be deterministic.
+2026-07-23T19:23:51Z [10,427ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.iray.libs-0.0.0+69cbf6ad.lx64.r/bin/iray/nvcuvid_video_decoder.so: libnvcuvid.so.1: cannot open shared object file: No such file or directory
+2026-07-23T19:23:51Z [10,427ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading .\nt-x86-64\lib\nvcuvid_video_decoder.so: .\nt-x86-64\lib\nvcuvid_video_decoder.so: cannot open shared object file: No such file or directory
+2026-07-23T19:23:51Z [10,427ms] [Warning] [rtx.neuraylib.plugin] Failed to load nvcuvid h264 decoder plugin. Iray Bridge h264 support will not be available.
+2026-07-23T19:23:51Z [10,971ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_goal.
+2026-07-23T19:23:51Z [10,971ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_current.
+2026-07-23T19:24:16Z [35,690ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Calling createGpuFoundation without first releasing already acquired instances with releaseGpuFoundation!
+2026-07-23T19:24:16Z [35,737ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:24:16Z [35,737ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:24:16Z [35,737ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:24:16Z [35,866ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+Fatal Python error: Segmentation fault
+
+Thread 0x00007669bddcb740 (most recent call first):
+  File "/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/exts/isaacsim.simulation_app/isaacsim/simulation_app/simulation_app.py", line 838 in close
+  File "/home/ubuntu/IsaacLab/eval_sweep.py", line 372 in main
+  File "/home/ubuntu/IsaacLab/eval_sweep.py", line 376 in <module>
+
+Extension modules: omni.mdl.pymdlsdk._pymdlsdk, numpy.core._multiarray_umath, numpy.core._multiarray_tests, numpy.linalg._umath_linalg, numpy.fft._pocketfft_internal, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._mt19937, numpy.random.mtrand, numpy.random._philox, numpy.random._pcg64, numpy.random._sfc64, numpy.random._generator, scipy._lib._ccallback_c, scipy.sparse._sparsetools, _csparsetools, scipy.sparse._csparsetools, scipy.linalg._fblas, scipy.linalg._flapack, scipy.linalg.cython_lapack, scipy.linalg._cythonized_array_utils, scipy.linalg._solve_toeplitz, scipy.linalg._decomp_lu_cython, scipy.linalg._matfuncs_sqrtm_triu, scipy.linalg._matfuncs_expm, scipy.linalg._linalg_pythran, scipy.linalg.cython_blas, scipy.linalg._decomp_update, scipy.sparse.linalg._dsolve._superlu, scipy.sparse.linalg._eigen.arpack._arpack, scipy.sparse.linalg._propack._spropack, scipy.sparse.linalg._propack._dpropack, scipy.sparse.linalg._propack._cpropack, scipy.sparse.linalg._propack._zpropack, scipy.sparse.csgraph._tools, scipy.sparse.csgraph._shortest_path, scipy.sparse.csgraph._traversal, scipy.sparse.csgraph._min_spanning_tree, scipy.sparse.csgraph._flow, scipy.sparse.csgraph._matching, scipy.sparse.csgraph._reordering, scipy.spatial._ckdtree, scipy._lib.messagestream, scipy.spatial._qhull, scipy.spatial._voronoi, scipy.spatial._distance_wrap, scipy.spatial._hausdorff, scipy.special._ufuncs_cxx, scipy.special._ufuncs, scipy.special._specfun, scipy.special._comb, scipy.special._ellip_harm_2, scipy.spatial.transform._rotation, torch._C, torch._C._dynamo.autograd_compiler, torch._C._dynamo.eval_frame, torch._C._dynamo.guards, torch._C._dynamo.utils, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, PIL._imaging, scipy.optimize._group_columns, scipy.optimize._trlib._trlib, scipy.optimize._lbfgsb, _moduleTNC, scipy.optimize._moduleTNC, scipy.optimize._cobyla, scipy.optimize._slsqp, scipy.optimize._minpack, scipy.optimize._lsq.givens_elimination, scipy.optimize._zeros, scipy.optimize._cython_nnls, scipy._lib._uarray._uarray, scipy.linalg._decomp_interpolative, scipy.optimize._bglu_dense, scipy.optimize._lsap, scipy.optimize._direct, psutil._psutil_linux, lxml._elementpath, lxml.etree, scipy.ndimage._nd_image, scipy.ndimage._rank_filter_1d, _ni_label, scipy.ndimage._ni_label, yaml._yaml, scipy.interpolate._fitpack, scipy.interpolate._dfitpack, scipy.interpolate._dierckx, scipy.interpolate._ppoly, scipy.interpolate._interpnd, scipy.interpolate._rbfinterp_pythran, scipy.interpolate._rgi_cython, scipy.interpolate._bspl, h5py._errors, h5py.defs, h5py._objects, h5py.h5, h5py.utils, h5py.h5t, h5py.h5s, h5py.h5ac, h5py.h5p, h5py.h5r, h5py._proxy, h5py._conv, h5py.h5z, h5py.h5a, h5py.h5d, h5py.h5ds, h5py.h5g, h5py.h5i, h5py.h5o, h5py.h5f, h5py.h5fd, h5py.h5pl, h5py.h5l2026-07-23T19:24:16Z [35,866ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:24:16Z [35,866ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+, h5py._selector, kiwisolver._cext, hid (total: 124)
+Loading user config located at: '/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260723_192416.log
+2026-07-23T19:24:17Z [128ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-07-23T19:24:17Z [503ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-07-23T19:24:17Z [720ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-07-23T19:24:17Z [731ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-07-23T19:24:22Z [5,498ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:24:22Z [5,498ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:24:22Z [5,498ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:24:22Z [5,603ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/ubuntu/IsaacLab/apps/isaaclab.python.headless.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-07-23_19-24-24.log[0m
+[36m======================================================================================[0m
+
+[33m19:24:24 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : None
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m19:24:25 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+2026-07-23T19:24:22Z [5,603ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:24:22Z [5,603ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+2026-07-23T19:24:24Z [7,932ms] [Warning] [isaaclab.envs.manager_based_env] Seed not set for the environment. The environment creation may not be deterministic.
+2026-07-23T19:24:26Z [9,732ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.iray.libs-0.0.0+69cbf6ad.lx64.r/bin/iray/nvcuvid_video_decoder.so: libnvcuvid.so.1: cannot open shared object file: No such file or directory
+2026-07-23T19:24:26Z [9,733ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading .\nt-x86-64\lib\nvcuvid_video_decoder.so: .\nt-x86-64\lib\nvcuvid_video_decoder.so: cannot open shared object file: No such file or directory
+2026-07-23T19:24:26Z [9,733ms] [Warning] [rtx.neuraylib.plugin] Failed to load nvcuvid h264 decoder plugin. Iray Bridge h264 support will not be available.
+2026-07-23T19:24:27Z [10,301ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_goal.
+2026-07-23T19:24:27Z [10,301ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_current.
+2026-07-23T19:24:53Z [36,749ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Calling createGpuFoundation without first releasing already acquired instances with releaseGpuFoundation!
+2026-07-23T19:24:53Z [36,792ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:24:53Z [36,792ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:24:53Z [36,793ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:24:53Z [36,931ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+2026-07-23T19:24:53Z [36,931ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:24:53Z [36,931ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+Loading user config located at: '/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260723_192454.log
+2026-07-23T19:24:54Z [159ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-07-23T19:24:54Z [618ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-07-23T19:24:55Z [911ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-07-23T19:24:55Z [926ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-07-23T19:25:00Z [6,030ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:25:00Z [6,030ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:25:00Z [6,030ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:25:00Z [6,130ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/ubuntu/IsaacLab/apps/isaaclab.python.headless.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-07-23_19-25-02.log[0m
+[36m======================================================================================[0m
+
+[33m19:25:02 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : None
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m19:25:03 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+2026-07-23T19:25:00Z [6,130ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:25:00Z [6,130ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+2026-07-23T19:25:02Z [8,371ms] [Warning] [isaaclab.envs.manager_based_env] Seed not set for the environment. The environment creation may not be deterministic.
+2026-07-23T19:25:04Z [10,383ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.iray.libs-0.0.0+69cbf6ad.lx64.r/bin/iray/nvcuvid_video_decoder.so: libnvcuvid.so.1: cannot open shared object file: No such file or directory
+2026-07-23T19:25:04Z [10,383ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading .\nt-x86-64\lib\nvcuvid_video_decoder.so: .\nt-x86-64\lib\nvcuvid_video_decoder.so: cannot open shared object file: No such file or directory
+2026-07-23T19:25:04Z [10,383ms] [Warning] [rtx.neuraylib.plugin] Failed to load nvcuvid h264 decoder plugin. Iray Bridge h264 support will not be available.
+2026-07-23T19:25:05Z [10,941ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_goal.
+2026-07-23T19:25:05Z [10,941ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_current.
+2026-07-23T19:25:27Z [32,927ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Calling createGpuFoundation without first releasing already acquired instances with releaseGpuFoundation!
+2026-07-23T19:25:27Z [32,963ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:25:27Z [32,963ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:25:27Z [32,963ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:25:27Z [33,087ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+2026-07-23T19:25:27Z [33,087ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:25:27Z [33,087ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+Loading user config located at: '/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260723_192527.log
+2026-07-23T19:25:27Z [112ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-07-23T19:25:28Z [511ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-07-23T19:25:28Z [756ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-07-23T19:25:28Z [770ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-07-23T19:25:32Z [5,063ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:25:32Z [5,063ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:25:32Z [5,063ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:25:32Z [5,171ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/ubuntu/IsaacLab/apps/isaaclab.python.headless.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-07-23_19-25-34.log[0m
+[36m======================================================================================[0m
+
+[33m19:25:34 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : None
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m19:25:35 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+2026-07-23T19:25:32Z [5,171ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:25:32Z [5,171ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+2026-07-23T19:25:34Z [6,782ms] [Warning] [isaaclab.envs.manager_based_env] Seed not set for the environment. The environment creation may not be deterministic.
+2026-07-23T19:25:36Z [8,284ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.iray.libs-0.0.0+69cbf6ad.lx64.r/bin/iray/nvcuvid_video_decoder.so: libnvcuvid.so.1: cannot open shared object file: No such file or directory
+2026-07-23T19:25:36Z [8,284ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading .\nt-x86-64\lib\nvcuvid_video_decoder.so: .\nt-x86-64\lib\nvcuvid_video_decoder.so: cannot open shared object file: No such file or directory
+2026-07-23T19:25:36Z [8,284ms] [Warning] [rtx.neuraylib.plugin] Failed to load nvcuvid h264 decoder plugin. Iray Bridge h264 support will not be available.
+2026-07-23T19:25:36Z [8,778ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_goal.
+2026-07-23T19:25:36Z [8,778ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_current.
+2026-07-23T19:26:01Z [33,456ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Calling createGpuFoundation without first releasing already acquired instances with releaseGpuFoundation!
+2026-07-23T19:26:01Z [33,503ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:26:01Z [33,504ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:26:01Z [33,504ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:26:01Z [33,633ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+2026-07-23T19:26:01Z [33,633ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:26:01Z [33,633ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+Loading user config located at: '/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260723_192601.log
+2026-07-23T19:26:02Z [171ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-07-23T19:26:02Z [662ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-07-23T19:26:02Z [985ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-07-23T19:26:02Z [1,004ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-07-23T19:26:08Z [7,082ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:26:08Z [7,083ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:26:08Z [7,083ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:26:09Z [7,194ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/ubuntu/IsaacLab/apps/isaaclab.python.headless.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-07-23_19-26-11.log[0m
+[36m======================================================================================[0m
+
+[33m19:26:11 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : None
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m19:26:12 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+2026-07-23T19:26:09Z [7,194ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:26:09Z [7,194ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+2026-07-23T19:26:11Z [9,585ms] [Warning] [isaaclab.envs.manager_based_env] Seed not set for the environment. The environment creation may not be deterministic.
+2026-07-23T19:26:13Z [11,544ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.iray.libs-0.0.0+69cbf6ad.lx64.r/bin/iray/nvcuvid_video_decoder.so: libnvcuvid.so.1: cannot open shared object file: No such file or directory
+2026-07-23T19:26:13Z [11,544ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading .\nt-x86-64\lib\nvcuvid_video_decoder.so: .\nt-x86-64\lib\nvcuvid_video_decoder.so: cannot open shared object file: No such file or directory
+2026-07-23T19:26:13Z [11,545ms] [Warning] [rtx.neuraylib.plugin] Failed to load nvcuvid h264 decoder plugin. Iray Bridge h264 support will not be available.
+2026-07-23T19:26:14Z [12,123ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_goal.
+2026-07-23T19:26:14Z [12,123ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_current.
+2026-07-23T19:26:40Z [38,114ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Calling createGpuFoundation without first releasing already acquired instances with releaseGpuFoundation!
+2026-07-23T19:26:40Z [38,161ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:26:40Z [38,161ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:26:40Z [38,161ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:26:40Z [38,299ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+2026-07-23T19:26:40Z [38,299ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:26:40Z [38,299ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+Loading user config located at: '/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260723_192640.log
+2026-07-23T19:26:40Z [120ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-07-23T19:26:41Z [472ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-07-23T19:26:41Z [723ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-07-23T19:26:41Z [740ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-07-23T19:26:45Z [5,128ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:26:45Z [5,128ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:26:45Z [5,128ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:26:45Z [5,225ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/ubuntu/IsaacLab/apps/isaaclab.python.headless.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-07-23_19-26-47.log[0m
+[36m======================================================================================[0m
+
+[33m19:26:47 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : None
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m19:26:48 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+2026-07-23T19:26:45Z [5,225ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:26:45Z [5,225ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+2026-07-23T19:26:47Z [7,261ms] [Warning] [isaaclab.envs.manager_based_env] Seed not set for the environment. The environment creation may not be deterministic.
+2026-07-23T19:26:49Z [9,014ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.iray.libs-0.0.0+69cbf6ad.lx64.r/bin/iray/nvcuvid_video_decoder.so: libnvcuvid.so.1: cannot open shared object file: No such file or directory
+2026-07-23T19:26:49Z [9,014ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading .\nt-x86-64\lib\nvcuvid_video_decoder.so: .\nt-x86-64\lib\nvcuvid_video_decoder.so: cannot open shared object file: No such file or directory
+2026-07-23T19:26:49Z [9,014ms] [Warning] [rtx.neuraylib.plugin] Failed to load nvcuvid h264 decoder plugin. Iray Bridge h264 support will not be available.
+2026-07-23T19:26:50Z [9,507ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_goal.
+2026-07-23T19:26:50Z [9,507ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_current.
+2026-07-23T19:27:12Z [31,961ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Calling createGpuFoundation without first releasing already acquired instances with releaseGpuFoundation!
+2026-07-23T19:27:12Z [31,997ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:27:12Z [31,997ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:27:12Z [31,997ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:27:12Z [32,136ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+2026-07-23T19:27:12Z [32,136ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:27:12Z [32,137ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+Loading user config located at: '/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260723_192713.log
+2026-07-23T19:27:13Z [108ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-07-23T19:27:13Z [540ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-07-23T19:27:14Z [810ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-07-23T19:27:14Z [827ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-07-23T19:27:19Z [6,238ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:27:19Z [6,238ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:27:19Z [6,238ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:27:19Z [6,342ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/ubuntu/IsaacLab/apps/isaaclab.python.headless.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-07-23_19-27-21.log[0m
+[36m======================================================================================[0m
+
+[33m19:27:21 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : None
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m19:27:22 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+2026-07-23T19:27:19Z [6,342ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:27:19Z [6,342ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+2026-07-23T19:27:21Z [8,414ms] [Warning] [isaaclab.envs.manager_based_env] Seed not set for the environment. The environment creation may not be deterministic.
+2026-07-23T19:27:23Z [10,139ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.iray.libs-0.0.0+69cbf6ad.lx64.r/bin/iray/nvcuvid_video_decoder.so: libnvcuvid.so.1: cannot open shared object file: No such file or directory
+2026-07-23T19:27:23Z [10,140ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading .\nt-x86-64\lib\nvcuvid_video_decoder.so: .\nt-x86-64\lib\nvcuvid_video_decoder.so: cannot open shared object file: No such file or directory
+2026-07-23T19:27:23Z [10,140ms] [Warning] [rtx.neuraylib.plugin] Failed to load nvcuvid h264 decoder plugin. Iray Bridge h264 support will not be available.
+2026-07-23T19:27:23Z [10,595ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_goal.
+2026-07-23T19:27:23Z [10,595ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_current.
+2026-07-23T19:27:50Z [36,680ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Calling createGpuFoundation without first releasing already acquired instances with releaseGpuFoundation!
+2026-07-23T19:27:50Z [36,731ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:27:50Z [36,731ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:27:50Z [36,731ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:27:50Z [36,879ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+2026-07-23T19:27:50Z [36,879ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:27:50Z [36,879ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+Loading user config located at: '/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260723_192750.log
+2026-07-23T19:27:50Z [162ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-07-23T19:27:51Z [679ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-07-23T19:27:51Z [1,019ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-07-23T19:27:51Z [1,032ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-07-23T19:27:57Z [7,295ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:27:57Z [7,295ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:27:57Z [7,295ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:27:58Z [7,403ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/ubuntu/IsaacLab/apps/isaaclab.python.headless.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-07-23_19-28-00.log[0m
+[36m======================================================================================[0m
+
+[33m19:28:00 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : None
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m19:28:01 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+2026-07-23T19:27:58Z [7,403ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:27:58Z [7,403ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+2026-07-23T19:28:00Z [9,944ms] [Warning] [isaaclab.envs.manager_based_env] Seed not set for the environment. The environment creation may not be deterministic.
+2026-07-23T19:28:02Z [11,959ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.iray.libs-0.0.0+69cbf6ad.lx64.r/bin/iray/nvcuvid_video_decoder.so: libnvcuvid.so.1: cannot open shared object file: No such file or directory
+2026-07-23T19:28:02Z [11,960ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading .\nt-x86-64\lib\nvcuvid_video_decoder.so: .\nt-x86-64\lib\nvcuvid_video_decoder.so: cannot open shared object file: No such file or directory
+2026-07-23T19:28:02Z [11,960ms] [Warning] [rtx.neuraylib.plugin] Failed to load nvcuvid h264 decoder plugin. Iray Bridge h264 support will not be available.
+2026-07-23T19:28:03Z [12,524ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_goal.
+2026-07-23T19:28:03Z [12,524ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_current.
+2026-07-23T19:28:27Z [36,327ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Calling createGpuFoundation without first releasing already acquired instances with releaseGpuFoundation!
+2026-07-23T19:28:27Z [36,368ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:28:27Z [36,368ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:28:27Z [36,368ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:28:27Z [36,511ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+2026-07-23T19:28:27Z [36,512ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:28:27Z [36,512ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+Loading user config located at: '/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260723_192827.log
+2026-07-23T19:28:27Z [136ms] [Warning] [omni.usd_config.extension] Enable omni.materialx.libs extension to use MaterialX
+2026-07-23T19:28:28Z [572ms] [Warning] [omni.platforminfo.plugin] failed to open the default display.  Can't verify X Server version.
+2026-07-23T19:28:28Z [860ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-07-23T19:28:28Z [880ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-07-23T19:28:34Z [6,391ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:28:34Z [6,391ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:28:34Z [6,391ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:28:34Z [6,497ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/ubuntu/IsaacLab/apps/isaaclab.python.headless.kit
+
+[36m======================================================================================[0m
+[36m[1m[INFO][IsaacLab]: Logging to file: /tmp/isaaclab/logs/isaaclab_2026-07-23_19-28-36.log[0m
+[36m======================================================================================[0m
+
+[33m19:28:36 [simulation_context.py] WARNING: The `enable_external_forces_every_iteration` parameter in the PhysxCfg is set to False. If you are experiencing noisy velocities, consider enabling this flag. You may need to slightly increase the number of velocity iterations (setting it to 1 or 2 rather than 0), together with this flag, to improve the accuracy of velocity updates.[0m
+[INFO]: Base environment:
+	Environment device    : cuda:0
+	Environment seed      : None
+	Physics step-size     : 0.005
+	Rendering step-size   : 0.02
+	Environment step-size : 0.02
+[33m19:28:36 [terrain_importer.py] WARNING: Visual material specified for ground plane but no diffuse color found. Using default color: (0.0, 0.0, 0.0)[0m
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:220: UserWarning: The observation configuration dictionary 'obs_groups' is empty and thus likely not configured. Consider configuring the 'obs_groups' dictionary explicitly
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'actor' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'actor' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/rsl_rl/utils/utils.py:251: UserWarning: The observation configuration dictionary 'obs_groups' does not contain the 'critic' key. As an observation group with the name 'policy' was found, this is assumed to be the appropriate observation. Consider adding the 'critic' key to the 'obs_groups' dictionary for clarity. This behavior will be removed in a future version.
+  warnings.warn(
+2026-07-23T19:28:34Z [6,497ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:28:34Z [6,497ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
+2026-07-23T19:28:36Z [8,788ms] [Warning] [isaaclab.envs.manager_based_env] Seed not set for the environment. The environment creation may not be deterministic.
+2026-07-23T19:28:38Z [10,611ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/extscache/omni.iray.libs-0.0.0+69cbf6ad.lx64.r/bin/iray/nvcuvid_video_decoder.so: libnvcuvid.so.1: cannot open shared object file: No such file or directory
+2026-07-23T19:28:38Z [10,611ms] [Warning] [rtx.neuraylib.plugin] [LINK:PLUGIN]   0.0   LINK   plug warn : Loading .\nt-x86-64\lib\nvcuvid_video_decoder.so: .\nt-x86-64\lib\nvcuvid_video_decoder.so: cannot open shared object file: No such file or directory
+2026-07-23T19:28:38Z [10,611ms] [Warning] [rtx.neuraylib.plugin] Failed to load nvcuvid h264 decoder plugin. Iray Bridge h264 support will not be available.
+2026-07-23T19:28:38Z [11,141ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_goal.
+2026-07-23T19:28:38Z [11,141ms] [Warning] [omni.physx.fabric.plugin] FabricManager::initializePointInstancer mismatched prototypes on point instancer: /Visuals/Command/velocity_current.
+2026-07-23T19:29:03Z [36,358ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Calling createGpuFoundation without first releasing already acquired instances with releaseGpuFoundation!
+2026-07-23T19:29:04Z [36,407ms] [Error] [carb.graphics-vulkan.plugin] VkResult: ERROR_INCOMPATIBLE_DRIVER
+2026-07-23T19:29:04Z [36,407ms] [Error] [carb.graphics-vulkan.plugin] vkCreateInstance failed. Vulkan 1.1 is not supported, or your driver requires an update.
+2026-07-23T19:29:04Z [36,408ms] [Error] [gpu.foundation.plugin] carb::graphics::createInstance failed.
+2026-07-23T19:29:04Z [36,545ms] [Error] [gpu.foundation.plugin] Invalid getDeviceInfo parameters.
+2026-07-23T19:29:04Z [36,545ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Couldn't get driver version, failed to getDeviceInfo
+2026-07-23T19:29:04Z [36,545ms] [Warning] [omni.physx.foundation.plugin] PhysXFoundation: Unable to get IGpuFoundation, GpuDevices or Graphics!
