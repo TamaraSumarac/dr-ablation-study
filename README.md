@@ -19,10 +19,6 @@ In this project, I trained six locomotion policies for the Unitree Go2 in Isaac 
 
 *Rows: perturbation × severity (nominal first, then moderate → hard per type). Columns: policy — each trained missing exactly one randomization. Return and tracking error are shown as fractions of the full-DR baseline in the same row; fall rate is absolute (baseline's fall rate is zero in most rows, so a ratio would be undefined). Red borders: gap vs baseline exceeds 2σ (SEMs combined in quadrature; binomial for fall rate). All results can be found in [`figures/`](figures/).*
 
-<!-- ![Episode return heatmap](figures/heatmap_ep_return.png)
-
-*Rows: perturbation × severity. Columns: policy (each trained missing one randomization). Values: episode return as a fraction of the full-DR baseline in the same row. Red borders: gap vs baseline exceeds 2σ. Three more heatmaps (tracking error, fall rate, episode length) in [`figures/`](figures/).* -->
-
 ---
 
 ## **What this is**
@@ -78,8 +74,7 @@ $$J\ddot{e} + K_d\dot{e} + K_p e = 0
 \quad\Longrightarrow\quad
 \omega_0 = \sqrt{K_p/J},\qquad
 \zeta = \frac{K_d}{2\sqrt{K_p J}}$$
-<!-- 
-A surprise for me here, coming from classical control: I expected well-designed joints to sit near critical damping ($\zeta \approx 1$) — reach the target, no oscillation. Go2's gains ($K_p = 25$, $K_d = 0.5$) put the joints far from that: for plausible leg inertias, $\zeta \approx 1$ lands well below 1, heavily underdamped. This turns out to be the deliberate convention in legged RL — low, compliant gains are favored for sim-to-real transfer and for surviving contact — and it works because the PD loop is not the whole controller: the RL policy sits above it, retargeting joints at 50 Hz (dt = 5ms, 4 physics steps per policy), effectively acting as the outer damper/corrector that a classical servo would build in via $K_d$. Soft springs below, intelligence above. (Which also foreshadows the latency result: delay poisons exactly the loop that stability was delegated to.) -->
+
 
 One aspect I found particularly interesting from a classical controls perspective is that these gains are nowhere near critical damping ($\zeta \approx 1$), where one would normally expect a servo to settle as quickly as possible without oscillation. With Go2's default gains ($K_p = 25$, $K_d = 0.5$), plausible leg inertias ($J \approx 0.01\text{--}0.05~\mathrm{kg\,m^2}$) place the joints well into the underdamped regime. This seems to be intentional: legged RL typically favors compliant, low-gain joint controllers for improved contact robustness and sim-to-real transfer. The PD controller is therefore not expected to stabilize the robot on its own. Instead, the learned policy runs above it at 50 Hz (one policy step every four 5 ms physics steps), continually updating joint targets and effectively providing the higher-level damping and correction that a classical controller would otherwise achieve through larger derivative gains. Soft springs below, intelligence above—a design choice that also suggests a possible explanation for the latency results: if the policy provides the continual corrections that compensate for the compliant PD controller, then delaying those corrections would be expected to reduce stability.
 
