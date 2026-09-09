@@ -4,7 +4,7 @@ Looking at robot demonstrations, it was pretty funny to see how violent some of 
 
 [watch a robot get bullied but still adapt](https://www.youtube.com/watch?v=JQAfxp-FB0I)
 
-In this project, I trained six locomotion policies for the Unitree Go2 in Isaac Lab, keeping everything identical except for removing one domain randomization at a time during training (friction, mass, motor strenght, sensor noise, latency). I then tested all six policies across eleven fixed simulation environments with physics conditions they had not seen during training.
+In this project, I trained six locomotion policies for the Unitree Go2 in Isaac Lab, keeping everything identical except for removing one domain randomization at a time during training (friction, mass, motor stiffness/damping, sensor noise, or latency). I then tested all six policies across eleven fixed simulation environments: one nominal environment and two out of training distribution perturbation severities for each of the five parameters.
 
 **TLDR:** All six policies perform equally well under nominal, unperturbed conditions, but clear differences emerge once the physics shifts. Removing just one training randomization can significantly reduce robustness and some randomizations improve robustness beyond the specific perturbation they model, helping the policy handle other types of physics shifts as well.
 
@@ -124,7 +124,7 @@ For each heatmap cell, I compare the policy mean against the full-DR baseline un
 
 - Reduced joint stiffness/damping and latency perturbations behave very differently than mass - both eventually destabilize locomotion and lead to falls.
 
-- Stiffness/damping results are also interesting from a controls perspective. For plausible leg inertias, Go2's default gains ($K_p=25$, $K_d=0.5$) already place the simplified joint model in the underdamped regime. This may be intentional: rather than making each joint behave like the fastest possible isolated servo, relatively low gains provide compliance, while the learned policy continuously updates joint targets at 50 Hz to stabilize the overall motion. This may also help explain the strong latency effect. If relatively compliant low-level control leaves more of the overall stabilization to the learned policy, delaying those higher-level corrections should make locomotion particularly sensitive to latency.
+- Stiffness/damping results are also interesting from a controls perspective. For plausible leg inertias, Go2's default gains ($K_p=25$, $K_d=0.5$) already place the simplified joint model in the underdamped regime. This may be intentional: rather than making each joint behave like the fastest possible isolated servo, relatively low gains provide compliance, while the learned policy continuously updates joint targets at 50 Hz to stabilize the overall motion. This makes the latency result particularly interesting: despite relying on these higher-level corrections, a policy trained with only 0–20 ms of latency remains robust at delays up to 100 ms. In contrast, the policy trained without latency randomization becomes unstable at the same delay.
 
 ### **Friction randomization improves robustness to reduced joint stiffness/damping**
 
