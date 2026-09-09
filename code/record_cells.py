@@ -1,5 +1,5 @@
 """
-record_cells.py — film selected policy x perturbation cells (Week 3, video session)
+record_cells.py — film selected policy x perturbation cells (DR-ablation video session)
 v2: full 10-clip list + sensor_noise branch.
 
 One cell per process:  python record_cells.py <index 0-9>

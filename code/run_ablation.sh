@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# run_ablation.sh — launch the six Week 3 training runs sequentially.
+# run_ablation.sh — launch the six DR-ablation training runs sequentially.
 #
 # PRECONDITIONS:
 #   - ablation_env_cfg.py installed + imported in go2/__init__.py
@@ -18,7 +18,7 @@ set -euo pipefail
 cd /home/ubuntu/IsaacLab
 
 SEED=42
-ITERS=1000          # matches Week 2 (model_999) — ~10 min/run on the 4090
+ITERS=1000          # matches the stock baseline (model_999) — ~10 min/run on the 4090
 TRAIN=scripts/reinforcement_learning/rsl_rl/train.py
 
 TASKS=(

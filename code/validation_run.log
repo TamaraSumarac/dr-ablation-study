@@ -163,7 +163,7 @@ Critic Model: MLPModel(
     (6): Linear(in_features=128, out_features=1, bias=True)
   )
 )
-[week2_stock_baseline |        nominal/none    ] return=   41.35  fall_rate=0.00  stuck=0
+[stock_baseline |        nominal/none    ] return=   41.35  fall_rate=0.00  stuck=0
 [33m19:07:36 [manager_based_env.py] WARNING: Seed not set for the environment. The environment creation may not be deterministic.[0m
 Loading user config located at: '/home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
 [Info] [carb] Logging to file: /home/ubuntu/miniconda3/envs/env_isaaclab/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20260723_192229.log

@@ -7,12 +7,12 @@ CHANGES FROM v1 (all from pod reconnaissance):
   - motor_strength + sensor_noise branches implemented (yaml gave attrs)
   - latency dual-mode: LatencyWrapper for TODAY's stock-actuator validation,
     DelayedPD actuator freeze for TOMORROW's six-policy sweep
-  - POLICIES set up for today's validation (Week 2 baseline only)
+  - POLICIES set up for today's validation (stock baseline only)
 
 RUN MODES:
-  TODAY (validation):   USE_DELAYED_PD = False, POLICIES = Week 2 model_999
+  TODAY (validation):   USE_DELAYED_PD = False, POLICIES = stock baseline model_999
   TOMORROW (the sweep): USE_DELAYED_PD = True, fill six checkpoint paths,
-                        fill WEEK2_BALLPARK_RETURN if known
+                        fill STOCK_BALLPARK_RETURN if known
 """
 
 # ── Isaac Sim bootstrap — MUST precede every isaaclab import ────────────────
@@ -44,14 +44,14 @@ from isaaclab_tasks.manager_based.locomotion.velocity.config.go2.ablation_env_cf
 # PART 0 — CONFIG: the experiment manifest
 # ─────────────────────────────────────────────────────────────────────────────
 
-# False = TODAY: stock actuators (matches Week 2 checkpoint); latency via wrapper.
+# False = TODAY: stock actuators (matches stock baseline checkpoint); latency via wrapper.
 ## True  = TOMORROW: all cells use DelayedPD actuators (matches the six new
 #         policies); latency via frozen actuator delay. FLIP BEFORE THE SWEEP.
 USE_DELAYED_PD = True
 
 POLICIES = {
-    # TODAY — validation against the Week 2 baseline:
-    #"week2_stock_baseline":
+    # TODAY — validation against the stock baseline:
+    #"stock_baseline":
     #    "/home/ubuntu/IsaacLab/logs/rsl_rl/unitree_go2_flat/2026-07-16_21-33-44/model_999.pt",
     # TOMORROW — replace the entry above with the six fresh runs
     # (paths from: ls -d /home/ubuntu/IsaacLab/logs/rsl_rl/*/20*):
@@ -91,7 +91,7 @@ EVAL_SEED = 42
 MAX_EPISODE_STEPS = 1100    # true length 20/(0.005*4)=1000 + headroom;
                             # live=True in output = hit ceiling = bug flag
 
-WEEK2_BALLPARK_RETURN = None   # optional: fill from TensorBoard plateau
+STOCK_BALLPARK_RETURN = None   # optional: fill from TensorBoard plateau
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -362,10 +362,10 @@ def main():
                         f"{policy_name} falls in NOMINAL conditions "
                         f"(fall_rate={fall_rate:.2f}) — pipeline broken, "
                         "not physics. Stop and debug.")
-                if WEEK2_BALLPARK_RETURN and mean_ret < 0.5 * WEEK2_BALLPARK_RETURN:
+                if STOCK_BALLPARK_RETURN and mean_ret < 0.5 * STOCK_BALLPARK_RETURN:
                     raise RuntimeError(
                         f"nominal return {mean_ret:.1f} far below reference "
-                        f"(~{WEEK2_BALLPARK_RETURN}) — normalizer/env mismatch?")
+                        f"(~{STOCK_BALLPARK_RETURN}) — normalizer/env mismatch?")
 
         env.close()
 
@@ -376,7 +376,7 @@ if __name__ == "__main__":
     main()
 
 # ─────────────────────────────────────────────────────────────────────────────
-# TODAY'S DEFINITION OF DONE: this file x week2_stock_baseline x full grid ->
+# TODAY'S DEFINITION OF DONE: this file x stock_baseline x full grid ->
 # results_raw.csv, nominal gate passes, hard cells degraded, stuck=0.
 # TOMORROW: USE_DELAYED_PD=True, six POLICIES paths, rerun -> the dataset.
 # ─────────────────────────────────────────────────────────────────────────────

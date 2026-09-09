@@ -1,6 +1,6 @@
 """
-ablation_env_cfg.py — Week 3 DR-ablation configs (rebuilt against the REAL
-Week 2 env.yaml, 2026-07-23)
+ablation_env_cfg.py — DR-ablation configs (rebuilt against the REAL
+stock-baseline env.yaml, 2026-07-23)
 
 INSTALL: copy this file into
   /workspace/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/manager_based/
@@ -111,7 +111,7 @@ class Go2AblationFullDrCfg(UnitreeGo2FlatEnvCfg):
 class Go2AblationNoFrictionCfg(Go2AblationFullDrCfg):
     def __post_init__(self):
         super().__post_init__()
-        # back to frozen nominal (what stock Week 2 actually had)
+        # back to frozen nominal (what the stock baseline actually had)
         self.events.physics_material.params["static_friction_range"] = (0.8, 0.8)
         self.events.physics_material.params["dynamic_friction_range"] = (0.6, 0.6)
 
