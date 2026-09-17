@@ -50,7 +50,9 @@ I trained six policies using rsl-rl PPO on `Isaac-Velocity-Flat-Unitree-Go2` (10
 | `no_sensor_noise` | observation noise |
 | `no_action_latency` | action-delay randomization |
 
-Full-DR baseline extends Isaac Lab's default Go2 locomotion environment, which randomizes base mass and sensor noise. I additionally introduced friction randomization (U(0.4, 1.0)), joint stiffness/damping scaling (U(0.9, 1.1)), and action latency (0–4 physics steps, or 0–20 ms). To implement action latency, I added a delayed PD actuator class that buffers commands before applying them to the joints. All policies use the same delayed PD actuator model, with the no-latency policy fixing the delay at zero, so differences in performance can be attributed to latency rather than differences in actuator implementation.
+Full-DR baseline builds on Isaac Lab’s default Go2 flat-locomotion environment, which includes base-mass randomization (+U(−1, 3) kg) and per-step sensor noise, while friction is effectively fixed at 0.8/0.6. I expanded this by randomizing floor friction over U(0.4, 1.0), scaling joint stiffness and damping by U(0.9, 1.1), and adding 0–20 ms of action latency (0–4 physics steps).
+
+For latency, I replaced the default PD actuator with Isaac Lab’s DelayedPDActuator, which keeps the same gains and limits but buffers joint commands before applying them. All six policies use this same actuator; the no-latency policy simply fixes the delay to zero. This way, differences come from training with or without latency randomization, rather than from using a different actuator implementation.
 
 **Evaluation setup**
 
