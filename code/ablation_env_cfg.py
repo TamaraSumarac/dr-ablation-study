@@ -1,42 +1,37 @@
 """
-ablation_env_cfg.py — DR-ablation configs (rebuilt against the REAL
-stock-baseline env.yaml, 2026-07-23)
+ablation_env_cfg.py — domain-randomization ablation configs for the Unitree Go2
 
-INSTALL: copy this file into
-  /workspace/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/manager_based/
-      locomotion/velocity/config/go2/ablation_env_cfg.py
-then append to that folder's __init__.py:
-  from . import ablation_env_cfg
-Stock train.py can then launch every task by name (see run_ablation.sh).
+Defines a full-DR baseline environment and five one-term-out ablations, and
+registers each as a gym task so the stock Isaac Lab / RSL-RL train.py can
+launch them by name (see run_ablation.sh).
 
-GROUND TRUTH (from logs/.../2026-07-16_21-33-44/params/env.yaml):
-  stock training DR was ONLY: mass add U(-1,+3) kg + sensor noise
-  (base_lin_vel +/-0.1, base_ang_vel +/-0.2, projected_gravity +/-0.05).
-  Friction was FROZEN at 0.8/0.6 (degenerate range). No motor DR, no
-  latency, push_robot null, force/torque term a (0,0) no-op.
-  => the FULL-DR baseline below ADDS friction, motor-gain, and latency DR.
+INSTALL
+  Copy this file into the Isaac Lab checkout at
+    source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/
+  and append to that folder's __init__.py:
+    from . import ablation_env_cfg
 
-DESIGN INVARIANTS (the experiment dies if violated):
-  - every run: same seed, same iterations, same reward/curriculum
-  - ALL SIX configs use DelayedPDActuator (identical gains/limits) so the
-    actuator model is constant across runs; only the delay range differs.
-  - each ablation differs from FullDr by exactly ONE term.
+WHAT THE STOCK GO2 FLAT ENV RANDOMIZES
+  Isaac Lab's default Isaac-Velocity-Flat-Unitree-Go2-v0 config randomizes
+  only base mass (add U(-1, +3) kg) and per-step sensor noise on the policy
+  observations (base_lin_vel +/-0.1, base_ang_vel +/-0.2, projected_gravity
+  +/-0.05, joint_pos +/-0.01, joint_vel +/-1.5). Its friction term is present
+  but degenerate (static 0.8, dynamic 0.6, i.e. frozen). There is no motor-gain
+  or action-latency randomization and no push disturbance.
+  The full-DR baseline below therefore widens friction and ADDS motor-gain and
+  action-latency randomization on top of the stock mass + sensor-noise terms.
 
-VERIFY-ON-POD before launching (5 min):
-  V1. Import path + field names of DelayedPDActuatorCfg
-      (isaaclab.actuators; fields min_delay/max_delay in PHYSICS steps).
-  V2. mdp.randomize_actuator_gains exists with these param names.
-  V3. Actuator attr names copied in _delayed_pd_actuators (effort_limit,
-      velocity_limit, stiffness, damping) exist on Go2's stock actuator cfg
-      (print env_cfg.scene.robot.actuators to see keys + fields).
-  V4. gym.register kwargs match the pattern in this folder's __init__.py
-      (env_cfg_entry_point / rsl_rl_cfg_entry_point strings).
+DESIGN INVARIANTS
+  - every run: same seed, same iterations, same reward and curriculum
+  - all six configs use DelayedPDActuator with identical gains and limits, so
+    the actuator model is constant across runs; only the delay range differs
+  - each ablation differs from the full-DR baseline by exactly ONE term
 """
 
 import gymnasium as gym
 
 import isaaclab.envs.mdp as mdp
-from isaaclab.actuators import DelayedPDActuatorCfg          # V1
+from isaaclab.actuators import DelayedPDActuatorCfg
 from isaaclab.managers import EventTermCfg as EventTerm, SceneEntityCfg
 from isaaclab.utils import configclass
 
@@ -45,14 +40,15 @@ from . import agents
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# helper: swap every actuator group for DelayedPD with IDENTICAL parameters
-# (delay in PHYSICS steps; sim.dt = 0.005 s -> 1 step = 5 ms; decimation 4
-#  -> 1 control step = 4 physics steps = 20 ms)
+# helper: replace every actuator group with a DelayedPDActuator that keeps the
+# stock gains and limits and adds a per-env command delay.
+# Delay is in PHYSICS steps: sim.dt = 0.005 s -> 1 step = 5 ms; with
+# decimation 4, one control step = 4 physics steps = 20 ms.
 # ─────────────────────────────────────────────────────────────────────────────
 
 def _delayed_pd_actuators(cfg, min_delay, max_delay):
     new_actuators = {}
-    for name, act in cfg.scene.robot.actuators.items():      # V3
+    for name, act in cfg.scene.robot.actuators.items():
         new_actuators[name] = DelayedPDActuatorCfg(
             joint_names_expr=act.joint_names_expr,
             effort_limit=act.effort_limit,
@@ -66,7 +62,7 @@ def _delayed_pd_actuators(cfg, min_delay, max_delay):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# the FULL-DR baseline: all five terms ON
+# full-DR baseline: all five terms ON
 # ─────────────────────────────────────────────────────────────────────────────
 
 @configclass
@@ -76,15 +72,15 @@ class Go2AblationFullDrCfg(UnitreeGo2FlatEnvCfg):
     def __post_init__(self):
         super().__post_init__()
 
-        # 1. friction DR — stock was frozen (0.8, 0.8); widen to the
-        #    Colab-proven range. dynamic keeps the 0.75 ratio.
+        # 1. friction DR — widen the stock frozen (0.8, 0.8) to U(0.4, 1.0);
+        #    dynamic friction keeps the stock 0.75 ratio.
         self.events.physics_material.params["static_friction_range"] = (0.4, 1.0)
         self.events.physics_material.params["dynamic_friction_range"] = (0.3, 0.75)
 
-        # 2. mass DR — stock add U(-1, +3) kg: keep as-is (no change needed)
+        # 2. mass DR — stock add U(-1, +3) kg: kept as-is.
 
-        # 3. motor-strength DR — NEW: scale PD gains per env
-        self.events.actuator_gains = EventTerm(                # V2
+        # 3. motor-strength DR — new: scale PD stiffness and damping per env.
+        self.events.actuator_gains = EventTerm(
             func=mdp.randomize_actuator_gains,
             mode="startup",
             params={
@@ -96,22 +92,22 @@ class Go2AblationFullDrCfg(UnitreeGo2FlatEnvCfg):
             },
         )
 
-        # 4. sensor-noise DR — stock ON (+/-0.1 / +/-0.2 / +/-0.05): keep
+        # 4. sensor-noise DR — stock per-step observation noise: kept as-is.
 
-        # 5. action-latency DR — NEW: delay ~ U{0..4} physics steps (0-20 ms),
-        #    resampled per env. Actuator model identical across ALL configs.
+        # 5. action-latency DR — new: command delay ~ U{0..4} physics steps
+        #    (0-20 ms), resampled per env at reset.
         _delayed_pd_actuators(self, min_delay=0, max_delay=4)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# five one-knob-out ablations (each undoes exactly ONE term of FullDr)
+# five one-term-out ablations (each undoes exactly ONE term of the baseline)
 # ─────────────────────────────────────────────────────────────────────────────
 
 @configclass
 class Go2AblationNoFrictionCfg(Go2AblationFullDrCfg):
     def __post_init__(self):
         super().__post_init__()
-        # back to frozen nominal (what the stock baseline actually had)
+        # back to the stock frozen nominal
         self.events.physics_material.params["static_friction_range"] = (0.8, 0.8)
         self.events.physics_material.params["dynamic_friction_range"] = (0.6, 0.6)
 
@@ -141,12 +137,12 @@ class Go2AblationNoSensorNoiseCfg(Go2AblationFullDrCfg):
 class Go2AblationNoActionLatencyCfg(Go2AblationFullDrCfg):
     def __post_init__(self):
         super().__post_init__()
-        # SAME actuator model, delay frozen at zero — no confound
+        # same actuator model, delay frozen at zero
         _delayed_pd_actuators(self, min_delay=0, max_delay=0)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# task registration — names consumed by run_ablation.sh and eval_sweep POLICIES
+# task registration — names consumed by run_ablation.sh
 # ─────────────────────────────────────────────────────────────────────────────
 
 _ABLATION_TASKS = {
@@ -159,10 +155,10 @@ _ABLATION_TASKS = {
 }
 
 for _task_name, _cfg_class in _ABLATION_TASKS.items():
-    gym.register(                                              # V4: crib exact
-        id=_task_name,                                         # kwargs from this
-        entry_point="isaaclab.envs:ManagerBasedRLEnv",         # folder's
-        disable_env_checker=True,                              # __init__.py
+    gym.register(
+        id=_task_name,
+        entry_point="isaaclab.envs:ManagerBasedRLEnv",
+        disable_env_checker=True,
         kwargs={
             "env_cfg_entry_point": _cfg_class,
             "rsl_rl_cfg_entry_point":
